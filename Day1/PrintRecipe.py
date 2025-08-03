@@ -45,3 +45,4 @@ print("What is your pet's name? ")
 pet_name = input()
 print("Your band name could be "+ city_name.capitalize() + " " + pet_name.capitalize())
 
+
