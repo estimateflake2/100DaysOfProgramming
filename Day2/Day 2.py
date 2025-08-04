@@ -63,8 +63,3 @@ bill_per_person = round((bill_plus_tip / float(number_of_people)),2)
 print (f"Each person should pay ${bill_per_person}")
 
 
-
-
-
-
-
