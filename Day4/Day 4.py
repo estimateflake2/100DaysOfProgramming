@@ -39,18 +39,18 @@ import random
 # print(random.choice(fruits))
 
 #======================= Randomized Bill Pay
-friends = ["Alice", "Bob", "Charlie", "David", "Emanuel"]
-print(f"Today {random.choice(friends)} pays the bill.")
-hint = random.randint(0, len(friends)-1)
-print (f"Tomorrow {friends[hint]} pays the bill.")
-
-
-fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries", "Pears"]
-vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
-
-dirty_dozen = [fruits, vegetables]
-
-print(dirty_dozen[1][1])
+# friends = ["Alice", "Bob", "Charlie", "David", "Emanuel"]
+# print(f"Today {random.choice(friends)} pays the bill.")
+# hint = random.randint(0, len(friends)-1)
+# print (f"Tomorrow {friends[hint]} pays the bill.")
+#
+#
+# fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries", "Pears"]
+# vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
+#
+# dirty_dozen = [fruits, vegetables]
+#
+# print(dirty_dozen[1][1])
 #======================= Rock scissors Paper
 rock = '''
     _______
@@ -78,29 +78,30 @@ scissors = '''
       (____)
 ---.__(___)
 '''
-avail_choices = [rock, paper, scissors]
-choice = input ("Select Rock, Paper, or Scissors (R,P,S): ")
-computer_choice = random.choice(avail_choices)
-if choice == "R":
-    if computer_choice == avail_choices[1]:
-        print(f"You lose! The computer chose Paper: {computer_choice}")
-    elif computer_choice == avail_choices[2]:
-        print(f"You win! The computer chose Scissors: {computer_choice}")
-    else:
-        print(f"Draw! Try again. The computer chose Rock: {computer_choice}")
+for i in range (3):
+    avail_choices = [rock, paper, scissors]
+    choice = input ("Select Rock, Paper, or Scissors (R,P,S): ")
+    computer_choice = random.choice(avail_choices)
+    if choice == "R":
+        if computer_choice == avail_choices[1]:
+            print(f"You lose! The computer chose Paper: {computer_choice}")
+        elif computer_choice == avail_choices[2]:
+            print(f"You win! The computer chose Scissors: {computer_choice}")
+        else:
+            print(f"Draw! Try again. The computer chose Rock: {computer_choice}")
 
-elif choice == "P":
-    if computer_choice == avail_choices[2]:
-        print(f"You lose! The computer chose Scissors: {computer_choice}")
-    elif computer_choice == avail_choices[0]:
-        print(f"You win! The computer chose Rock: {computer_choice}")
-    else:
-        print(f"Draw! Try again. The computer chose Paper: {computer_choice}")
+    elif choice == "P":
+        if computer_choice == avail_choices[2]:
+            print(f"You lose! The computer chose Scissors: {computer_choice}")
+        elif computer_choice == avail_choices[0]:
+            print(f"You win! The computer chose Rock: {computer_choice}")
+        else:
+            print(f"Draw! Try again. The computer chose Paper: {computer_choice}")
 
-elif choice == "S":
-    if computer_choice == avail_choices[0]:
-        print(f"You lose! The computer chose Rock: {computer_choice}")
-    elif computer_choice == avail_choices[1]:
-        print(f"You win! The computer chose Paper: {computer_choice}")
-    else:
-        print(f"Draw! Try again. The computer chose Scissors: {computer_choice}")
+    elif choice == "S":
+        if computer_choice == avail_choices[0]:
+            print(f"You lose! The computer chose Rock: {computer_choice}")
+        elif computer_choice == avail_choices[1]:
+            print(f"You win! The computer chose Paper: {computer_choice}")
+        else:
+            print(f"Draw! Try again. The computer chose Scissors: {computer_choice}")
