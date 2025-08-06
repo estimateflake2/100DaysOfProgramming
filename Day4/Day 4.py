@@ -104,29 +104,3 @@ elif choice == "S":
         print(f"You win! The computer chose Paper: {computer_choice}")
     else:
         print(f"Draw! Try again. The computer chose Scissors: {computer_choice}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
