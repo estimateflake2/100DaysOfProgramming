@@ -67,7 +67,7 @@ stages = [r'''
 =========
 ''']
 curr_stage = len(stages) - 1
-str = ["Street", "Town", "Road", "Rain", "Cell Phone", "Clock"]
+str = ["school", "best friend", "mom","car", "run"]
 lives = 6
 dash = ""
 def replaceString (g_dash, g_indexes, g_usr_inp):
@@ -90,9 +90,9 @@ for index, word in enumerate(str):
         if letter.isalpha(): dash +="_"
         else: dash +=" "
     i =0
-    while i < len(word) and lives > 0 and dash.__contains__("_"):
+    while  lives > 0 and dash.__contains__("_"):
         i += 1
-        print(f"{word}*****************************{lives}/6 LIVES LEFT*****************************")
+        print(f"*****************************{lives}/6 LIVES LEFT *****************************")
         print (f"Word to guess: {dash}")
         usr_input = input(f"Guess a letter: ").strip()
         if usr_input[0] in word:
