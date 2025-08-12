@@ -56,42 +56,42 @@ def check_game_over(usr_deck, cmp_deck, usr_select_end):
     if total (usr_deck) == 21 and total (cmp_deck) == 21:
         print(f"\n========================================================")
         print(f"Your cards: {usr_deck}, current score: {total(usr_deck)}")
-        print(f"Computer's card(s): {cmp_deck} ")
+        print(f"Computer's card(s): {cmp_deck}, current score: {total(cmp_deck)}")
         print("Draw 🙃")
         print(f"========================================================\n")
         return 'n'
     elif total (usr_deck) > 21 >= total (cmp_deck):
         print(f"\n========================================================")
         print(f"Your cards: {usr_deck}, current score: {total(usr_deck)}")
-        print(f"Computer's card(s): {cmp_deck} ")
+        print(f"Computer's card(s): {cmp_deck}, current score: {total(cmp_deck)}")
         print("You went over. You lose 😭")
         print(f"========================================================\n")
         return 'n'
     elif total (cmp_deck) > 21 >= total (usr_deck):
         print(f"\n========================================================")
         print(f"Your cards: {usr_deck}, current score: {total(usr_deck)}")
-        print(f"Computer's card(s): {cmp_deck} ")
+        print(f"Computer's card(s): {cmp_deck}, current score: {total(cmp_deck)}")
         print("Opponent went over. You win 😁")
         print(f"========================================================\n")
         return 'n'
     elif usr_select_end == 'y' and total (usr_deck) > total (cmp_deck):
         print(f"\n========================================================")
         print(f"Your cards: {usr_deck}, current score: {total(usr_deck)}")
-        print(f"Computer's card(s): {cmp_deck} ")
+        print(f"Computer's card(s): {cmp_deck}, current score: {total(cmp_deck)}")
         print("You win 😃")
         print(f"========================================================\n")
         return 'n'
     elif usr_select_end == 'y' and total (usr_deck) < total (cmp_deck):
         print(f"\n========================================================")
         print(f"Your cards: {usr_deck}, current score: {total(usr_deck)}")
-        print(f"Computer's card(s): {cmp_deck} ")
+        print(f"Computer's card(s): {cmp_deck}, current score: {total(cmp_deck)}")
         print("You lose 😤")
         print(f"========================================================\n")
         return 'n'
     elif usr_select_end == 'y' and total (usr_deck) == total (cmp_deck):
         print(f"\n========================================================")
         print(f"Your cards: {usr_deck}, current score: {total(usr_deck)}")
-        print(f"Computer's card(s): {cmp_deck} ")
+        print(f"Computer's card(s): {cmp_deck}, current score: {total(cmp_deck)}")
         print("Draw 🙃")
         print(f"========================================================\n")
         return 'n'
@@ -117,3 +117,5 @@ while True:
                 continue_game = check_game_over(user_deck, computer_deck, "n")
             elif continue_game=='n':
                 continue_game = check_game_over(user_deck, computer_deck, "y")
+                user_deck = []
+                computer_deck = []
