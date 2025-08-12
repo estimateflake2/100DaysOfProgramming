@@ -109,8 +109,6 @@ while True:
         computer_deck.append(list(random_card_selector("c").values())[0])
         computer_deck.append(list(random_card_selector("c").values())[0])
         continue_game = check_game_over(user_deck, computer_deck, "n")
-        # print(f"Your cards: {user_deck}, current score: {total(user_deck)}")
-        # print(f"Computer's card(s): {encrypt_card(computer_deck)} ")
         while continue_game == 'y':
             continue_game = input ("\nType 'y' to get another card, type 'n' to pass: ")
             if continue_game=='y':
