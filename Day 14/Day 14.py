@@ -47,11 +47,11 @@ def add_new_compare(usr_inp, old_compare):
     return_compare = []
     new_compre = get_new_compare ()
     if usr_inp == 'A':
-        return_compare[0] = old_compare[0]
-    elif usr_inp == 'B':
-        return_compare[0] = old_compare[1]
+        return_compare.append(old_compare[0])
+    else:
+        return_compare.append( old_compare[1])
     if new_compre != False:
-            return_compare [1] = new_compre
+            return_compare.append( new_compre)
     else:
         return False
     return return_compare
@@ -77,6 +77,7 @@ while not end_game:
     if comp_results (user_input, compare):
         score += 1
         print(f"You're correct! Current score: {score}")
+        compare = add_new_compare(user_input, compare)
     else:
         print (f"Sorry, that's wrong. Final score: {score}")
         end_game = True
