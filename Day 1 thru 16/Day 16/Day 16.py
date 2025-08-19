@@ -40,4 +40,3 @@ while power != "off":
         break
     else:
         print ("invalid input. Please try again.")
-# print (m.get_items())
