@@ -3,7 +3,7 @@ from tkinter import *
 from functools import partial
 
 window = Tk()
-window.title("Calculator")
+window.title("Not Your Mama's Calculator")
 window.iconbitmap("calculator.ico")
 window.minsize(width =300, height=400)
 window.config(pady=10, padx=10)

@@ -7,7 +7,6 @@ window.config(pady=120, padx=150)
 
 
 
-
 entry = Entry()
 label = Label(text= 'Miles')
 value = 0
