@@ -2,6 +2,40 @@ from tkinter import * #imports all tkinter classes only
 from tkinter import messagebox
 import random
 
+
+# ---------------------------- SEARCH FUNCTION ------------------------------- #
+def search():
+    q = wg_website.get().strip()
+    if not q:
+        messagebox.showinfo('Empty Field', 'website is empty')
+        return
+    f = None
+    try:
+        f = open('data.txt', 'r', encoding='utf-8')
+        hit = None
+        for line in f:
+            parts = [p.strip() for p in line.strip().split('|')]
+            if len(parts) >= 3 and parts[0].lower() == q.lower():
+                hit = (parts[1], parts[2])
+                break
+    except FileNotFoundError:
+        messagebox.showinfo('Not Found', 'data file not found')
+    except Exception as e:
+        messagebox.showinfo('Error', str(e))
+    else:
+        if hit:
+            messagebox.showinfo(q, f'Username: {hit[0]}\nPassword: {hit[1]}')
+            window.clipboard_clear()
+            window.clipboard_append(hit[1])
+            window.update()
+        else:
+            messagebox.showinfo('Not Found', f'no entry for {q}')
+    finally:
+        if f:
+            f.close()
+        wg_website.delete(0, END)
+        wg_website.focus()
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def action():
     letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
@@ -59,7 +93,7 @@ window.title('Password Manager')
 window.config(padx=20, pady=20)
 
 # Tkinter Canvas Widget:
-canvas = Canvas(width=200, height=200, highlightthickness=0)
+canvas = Canvas(width=250, height=250, highlightthickness=0)
 img = PhotoImage(file='logo.png')
 canvas.create_image(100, 100, image=img)
 canvas.grid(row=0, column=1)
@@ -69,7 +103,11 @@ lb_website = Label(text='Website:', font=('ariel', 10, 'bold'))
 lb_website.grid(row=1, column=0)
 wg_website = Entry(width=35)
 wg_website.focus()
-wg_website.grid(row=1, column=1, columnspan=2)
+wg_website.grid(row=1, column=1, columnspan=2, padx=20)
+
+button_gn_password = Button(text="Search", command=search)
+button_gn_password.grid(row=1, column=2)
+
 
 lb_ursname = Label(text='Email/Username:', font=('ariel', 10, 'bold'))
 lb_ursname.grid(row=2, column=0)
@@ -79,7 +117,7 @@ wg_ursname.grid(row=2, column=1, columnspan=2)
 
 lb_passwd = Label(text='Password:', font=('ariel', 10, 'bold'))
 lb_passwd.grid(row=3, column=0)
-wg_passwd = Entry(width=21)
+wg_passwd = Entry(width=25)
 wg_passwd.grid(row=3, column=1)
 
 button_gn_password = Button(text="Generate Password", command=action)
