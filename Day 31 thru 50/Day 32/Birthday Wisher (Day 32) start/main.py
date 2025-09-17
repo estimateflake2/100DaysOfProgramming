@@ -12,6 +12,7 @@ from smtplib import *
 #     - If blocked, try these steps, Go back to Security > How you sign in to Google.
 #     - Turn off “Skip password when possible.”
 #     - If it still doesn’t show: Confirm you’re using a personal Gmail account, not a Workspace account.
+#   NOTE: gmail does not allow port 25 for SMTP, switch to port 587
 
 my_email = ''
 my_password=''
