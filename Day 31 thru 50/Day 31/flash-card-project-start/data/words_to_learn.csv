@@ -1,0 +1,100 @@
+Question,Answer
+What is the difference between 32-bit and 64-bit OS?,64-bit supports >4GB RAM and 64-bit apps; 32-bit limited to ~4GB.
+Which Windows tool manages startup programs?,Task Manager (Startup tab) or MSConfig.
+What is the purpose of Windows Safe Mode?,Loads minimal drivers/services for troubleshooting.
+Which command checks disk integrity and fixes errors?,chkdsk.
+What command updates package lists in Debian/Ubuntu Linux?,sudo apt-get update.
+What is the purpose of BitLocker?,Full disk encryption.
+Which tool creates/restores system images in Windows?,Backup and Restore (Windows 7) or System Image Recovery.
+Which file system supports larger files: FAT32 or NTFS?,NTFS.
+Which port does RDP use?,TCP 3389.
+Difference between a local account and Microsoft account?,Local: stored on PC; Microsoft: syncs across devices.
+What command lists active network connections in Windows?,netstat.
+Which tool edits the Windows Registry?,regedit.
+Which tool manages hard drive partitions in Windows?,Disk Management (diskmgmt.msc).
+Which command shows IP configuration in Windows?,ipconfig.
+Which Linux command shows IP configuration?,ifconfig or ip addr.
+Which Windows feature restores OS to an earlier point?,System Restore.
+Which log type in Event Viewer records application errors?,Application log.
+Which log type records OS issues?,System log.
+Which log type tracks security events?,Security log.
+What is the purpose of UAC (User Account Control)?,Prevents unauthorized system changes.
+Which tool in macOS installs updates?,Software Update / System Preferences.
+What is the macOS equivalent of Task Manager?,Activity Monitor.
+Which Linux command shows running processes?,ps or top.
+What is the purpose of Windows Defender Firewall?,Blocks/permits network traffic.
+Which Windows tool manages users and groups?,Computer Management → Local Users and Groups.
+Which Windows admin tool manages group policies?,Group Policy Editor (gpedit.msc).
+Which tool in Linux installs software on RedHat systems?,yum or dnf.
+What is the function of a service pack?,Collection of updates/fixes for OS.
+Which Windows feature allows rolling back drivers?,Device Manager → Roll Back Driver.
+Which command forces a DNS cache flush?,ipconfig /flushdns.
+Which command tests connectivity to a host?,ping.
+Which command traces packet route to a host?,"tracert (Windows), traceroute (Linux/macOS)."
+What is the purpose of NTFS permissions?,Control access to files/folders.
+Which Linux command installs .deb files?,dpkg -i filename.deb.
+Which Windows folder stores 32-bit programs on 64-bit systems?,C:\Program Files (x86).
+Which command checks/replaces corrupted system files?,sfc /scannow.
+What is the purpose of Windows Update?,"Installs OS patches, drivers, and security fixes."
+What is the purpose of the Recovery Partition?,Contains tools to repair/reinstall OS.
+Which Windows utility manages services?,services.msc.
+What is the purpose of Windows MMC?,Framework for management consoles.
+Which Linux command changes file permissions?,chmod.
+Which Linux command changes file ownership?,chown.
+Which Linux command switches to root user?,sudo -i or su.
+Which command displays current directory in Linux?,pwd.
+Which Linux command creates a new directory?,mkdir.
+Which Linux command copies files?,cp.
+Which Linux command moves/renames files?,mv.
+Which Linux command deletes files?,rm.
+Which Linux command displays contents of a file?,cat.
+Which Linux command shows directory contents?,ls.
+Which Linux command searches text within files?,grep.
+Which Linux command installs updates for all packages?,sudo apt-get upgrade.
+What is the purpose of Windows Task Scheduler?,Automates tasks based on triggers.
+Which Windows utility configures system startup options?,MSConfig.
+Which tool manages virtual memory in Windows?,System Properties → Performance Options.
+What is the purpose of Windows Event Viewer?,Displays system/app/security logs.
+What is a Windows domain?,A centralized network managed by Active Directory.
+What is a Windows workgroup?,A peer-to-peer network with no central control.
+What does the gpupdate /force command do?,Forces Group Policy refresh.
+What is the difference between NTFS and exFAT?,exFAT is portable across systems; NTFS supports advanced permissions.
+What is the purpose of EFS (Encrypting File System)?,Encrypts individual files/folders on NTFS volumes.
+Which Windows feature protects against malware?,Windows Defender Antivirus.
+Which Windows utility tests RAM?,Windows Memory Diagnostic.
+Which Windows utility checks for performance bottlenecks?,Performance Monitor.
+Which Windows utility shows system information?,msinfo32.
+Which tool creates/manages virtual desktops in Windows 10/11?,Task View.
+What is the purpose of OneDrive in Windows?,Cloud file storage and sync.
+What is the difference between RDP and VNC?,RDP transmits screen + input; VNC shares entire desktop session.
+What does the shutdown /r command do?,Restarts the system.
+What does the shutdown /s command do?,Shuts down the system.
+Which Linux command reboots immediately?,sudo reboot.
+Which Linux command powers off system?,sudo shutdown now.
+Which Windows command resets TCP/IP stack?,netsh int ip reset.
+Which command releases and renews IP address in Windows?,ipconfig /release then ipconfig /renew.
+Which Windows tool manages firewall rules?,Windows Defender Firewall with Advanced Security.
+Which port is used for HTTPS?,TCP 443.
+Which port is used for HTTP?,TCP 80.
+Which port is used for SMTP?,TCP 25 (or 587/465 with encryption).
+Which port is used for POP3?,TCP 110.
+Which port is used for IMAP?,TCP 143 (or 993 with SSL).
+Which port is used for FTP?,TCP 21.
+Which port is used for SSH?,TCP 22.
+Which port is used for Telnet?,TCP 23.
+Which port is used for DNS?,UDP/TCP 53.
+Which port is used for DHCP?,UDP 67/68.
+Which Windows feature blocks unsigned drivers?,Driver Signature Enforcement.
+What does the tasklist command show?,Running processes.
+What does the taskkill command do?,Terminates a running process.
+What does the format command do?,Prepares a drive for use (erases contents).
+What is the purpose of a system restore point?,Rolls back system settings/apps to a saved state.
+What is the purpose of System Image Recovery?,Restores entire OS from image backup.
+What is the Windows Recovery Environment (WinRE)?,A troubleshooting environment for repairing/reinstalling Windows.
+Which Linux command elevates privileges for one command?,sudo.
+Which Linux command edits text files in terminal?,nano or vi.
+Which Linux command updates time/date settings?,date.
+Which Linux command compresses files into archive?,tar -cvf.
+Which Linux command extracts files from archive?,tar -xvf.
+Which Linux command finds files by name?,find.
+Which Linux command shows disk usage?,df -h.

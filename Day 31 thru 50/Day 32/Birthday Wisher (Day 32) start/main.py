@@ -1,5 +1,6 @@
 from smtplib import *
-
+from dotenv import load_dotenv
+import os
 
 # When using gmail account you must first enable App Password:
 #     Enable 2 step verification :
@@ -14,9 +15,14 @@ from smtplib import *
 #     - If it still doesn’t show: Confirm you’re using a personal Gmail account, not a Workspace account.
 #   NOTE: gmail does not allow port 25 for SMTP, switch to port 587
 
-my_email = ''
-my_password=''
-to_email = ''
+#loading .env
+load_dotenv()
+my_email = os.getenv("MY_EMAIL")
+my_password=os.getenv("MY_PASSWORD")
+to_email = 'oladipo.bankole@gmail.com'
+
+print ('my_email:  ',my_email)
+print ('my_password:  ',my_password)
 
 with SMTP("smtp.gmail.com", 587, timeout=30) as connection: #smtp(sender's hostmail,
     connection.starttls()
