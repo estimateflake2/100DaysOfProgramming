@@ -16,9 +16,7 @@ ALLOWED_DOMAINS = {
 }
 
 DO_NOT_EMAIL = {
-    "3drealtypm@gmail.com",
-    "aokanlawoh@gmail.com",
-    "celticotast@gmail.com"
+
 }
 
 load_dotenv()
