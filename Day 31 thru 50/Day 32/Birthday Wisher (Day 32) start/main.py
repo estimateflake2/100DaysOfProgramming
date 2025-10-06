@@ -1,113 +1,97 @@
-from smtplib import *
-from dotenv import load_dotenv
-import os
-import  random
-from  datetime import datetime
+from smtplib import SMTP
 from email.message import EmailMessage
-import get_gmail_addresses as load_email
+from dotenv import load_dotenv
+from datetime import datetime
+import os
 import csv
-import datetime as dt
+import random
+from typing import List, Dict
+from get_gmail_addresses import get_emails
 
-# When using gmail account you must first enable App Password:
-#     Enable 2 step verification :
-#     - Go to: myaccount.google.com → Security → 2-Step Verification
-#     - Enter Password
-#     - Turn on 2 Step Verification
-#
-#     Get App Password:
-#     - go to: https://myaccount.google.com/apppasswords
-#     - If blocked, try these steps, Go back to Security > How you sign in to Google.
-#     - Turn off “Skip password when possible.”
-#     - If it still doesn’t show: Confirm you’re using a personal Gmail account, not a Workspace account.
-#   NOTE: gmail does not allow port 25 for SMTP, switch to port 587
+# ----------------- Config -----------------
+CSV_PATH = "gmail_addresses.csv"
+QUOTES_PATH = "quotes.txt"
+SERIES_SUBJECT = "Your Monthly Spark ✨"
+SEND_DAY = 0  # send on the 18th of each month
+DRY_RUN = False  # set True to print instead of send
+# ------------------------------------------
 
-#loading .env
+# load env
 load_dotenv()
-my_email = os.getenv("SEC_EMAIL")
-my_password=os.getenv("SEC_PASSWORD")
-quotes_list = []
+MY_EMAIL = os.getenv("SEC_EMAIL")
+MY_PASSWORD = os.getenv("SEC_PASSWORD")
 
-#get content from quotes.txt
-def get_quotes_file():
-    global quotes_list
-    with open("quotes.txt", "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if " - " in line:  # only process lines that follow the pattern
-                quote, author = line.rsplit(" - ", 1)  # split only on last " - "
-                quotes_list.append({
-                    "quote": quote.strip('" '),  # remove extra quotes/spaces
-                    "author": author.strip()
-                })
 
-#get Emmails from file
-def read_emails_from_csv(path="gmail_addresses.csv"):
-    emails = []
+def read_emails_from_csv(path: str = CSV_PATH) -> List[str]:
+    get_emails()
+    emails: List[str] = []
     with open(path, "r", newline="", encoding="utf-8") as f:
         reader = csv.reader(f)
         next(reader, None)  # skip header
         for row in reader:
-            if row:  # skip empty lines
+            if row and row[0].strip():
                 emails.append(row[0].strip().lower())
     return emails
 
 
-#Send Email Method
-def send_email():
-    msg = EmailMessage()
-    msg["From"] = my_email
+def load_quotes(path: str = QUOTES_PATH) -> List[Dict[str, str]]:
+    quotes: List[Dict[str, str]] = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            s = line.strip()
+            if " - " in s:
+                quote, author = s.rsplit(" - ", 1)
+                quotes.append({
+                    "quote": quote.strip('" ').strip(),
+                    "author": author.strip()
+                })
+    if not quotes:
+        raise RuntimeError("No quotes parsed from quotes.txt")
+    return quotes
 
 
+def send_monthly_quotes():
+    if not MY_EMAIL or not MY_PASSWORD:
+        raise RuntimeError("Missing SEC_EMAIL or SEC_PASSWORD in .env")
+
+    # Only run on the configured day
+    today = datetime.now()
+    if today.weekday() != SEND_DAY:
+        day_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        print(f"Today is {day_names[today.weekday()]}. Not sending today. It only sends on {day_names[SEND_DAY]} of the week.")
+        return
+
+    emails = read_emails_from_csv()
+    quotes = load_quotes()
+    chosen = random.choice(quotes)
+    body = f"{chosen['quote']}\n\n~{chosen['author']}"
 
 
-    with SMTP("smtp.gmail.com", 587) as server:
+    sent_count = 0
+
+    with SMTP("smtp.gmail.com", 587, timeout=30) as server:
         server.ehlo()
         server.starttls()
         server.ehlo()
-        server.login(my_email, my_password)
-        # SMTPUTF8 signals non-ASCII in headers; Gmail supports it
+        server.login(MY_EMAIL, MY_PASSWORD)
 
-        #===============================================send message
-        now = datetime.now()
-        if now.day == 18:
-            # get email addresses
-            # load_email.get_emails()
-            emails = read_emails_from_csv()
+        for addr in emails:
+            # Build a fresh message for each recipient
+            msg = EmailMessage()
+            msg["From"] = MY_EMAIL
+            msg["To"] = addr
+            msg["Subject"] = SERIES_SUBJECT
+            msg.set_content(body)
 
-            # load quotes from file
-            get_quotes_file()  # get content from quotes.txt
-            todays_quote = quotes_list[random.randint(0, len(quotes_list))]
+            if DRY_RUN:
+                print(f"[DRY RUN] Would send to: {addr}")
+            else:
+                server.send_message(msg, mail_options=["SMTPUTF8"])
+                print(f"Sent to: {addr}")
+                sent_count += 1
 
-            msg["To"] = 'oladipo.bankole@gmail.com'
-            msg["Subject"] = 'Your Monthly Spark✨'  # emojis OK
-            body = f'{todays_quote['quote']}\n\n~{todays_quote['author']}'
-            msg.set_content(body)  # plain text; can include emojis too
-            # for n in emails:
-            #     msg["To"] = n
-            #     msg["Subject"] = 'Your Monthly Spark✨'  # emojis OK
-            #     body = f'{todays_quote['quote']}\n\n~{todays_quote['author']}'
-            #     msg.set_content(body)  # plain text; can include emojis too
-        #==========================================================
-
-        server.send_message(msg, mail_options=["SMTPUTF8"])
-
-    send_email()
-    # with SMTP("smtp.gmail.com", 587, timeout=30) as s:
-    #     s.starttls()
-    #     s.login(my_email, my_password)
+    print(f"Done. Total sent: {sent_count}")
 
 
-
-# def send_email(to_email, subject, body):
-#     with SMTP("smtp.gmail.com", 587, timeout=30) as connection:  # smtp(sender's hostmail,
-#         connection.starttls()
-#         connection.login(user=my_email, password=my_password)
-#         connection.sendmail(from_addr=my_email,
-#                             to_addrs=to_email,
-#                             msg=f'Subject:{subject}\n\n{body}'
-#                             )
-
-
-
-
-   # send_email(','Your Monthly Spark✨',body)
+# if __name__ == "__main__":
+send_monthly_quotes()

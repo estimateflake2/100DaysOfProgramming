@@ -1,3 +1,0 @@
-
-MY_EMAIL = ''
-MY_PASSWORD =''
