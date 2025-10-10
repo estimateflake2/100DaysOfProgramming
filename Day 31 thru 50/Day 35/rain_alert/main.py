@@ -1,5 +1,3 @@
-# api_key = "759d4498e3428e9709c033efdb7aa198"
-# # https://api.openweathermap.org/geo/1.0/direct?q=London,UK&limit=10&appid=759d4498e3428e9709c033efdb7aa198
 
 from dotenv import load_dotenv
 import os
