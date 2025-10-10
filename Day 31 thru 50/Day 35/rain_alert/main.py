@@ -1,9 +1,10 @@
-# api_key = "759d4498e3428e9709c033efdb7aa198"
-# # https://api.openweathermap.org/geo/1.0/direct?q=London,UK&limit=10&appid=759d4498e3428e9709c033efdb7aa198
 
-from dotenv import load_dotenv
+
 import os
+
 import requests
+from dotenv import load_dotenv
+from twilio.rest import Client
 
 # Load variables from .env file
 load_dotenv()
@@ -18,7 +19,9 @@ location = os.getenv("LOCATION")
 def get_city_state_weather():
     # Parameters
     params = {
-        "q": location,
+        # "q": location,
+        "lat": 29.771157,
+        "lon": -95.352213,
         "limit": 10,
         "appid": api_key
     }
@@ -35,7 +38,6 @@ def get_city_state_weather():
 # get_city_state_weather()
 
 #============================================================================================================
-import requests
 
 def get_current_location():
     try:
@@ -53,16 +55,32 @@ def get_5_days():
     latitude, longitude = get_current_location()
     url_5_days = "https://api.openweathermap.org/data/2.5/forecast"
     params = {
-        "lat": latitude,
-        "lon": longitude,
+        # "lat": latitude,
+        # "lon": longitude,
+        "lat": 6.524379,
+        "lon": 3.379206,
+        "cnt": 4,
         "appid": api_key
     }
     response = requests.get(url_5_days, params=params)
-    items = response.json()['list']
-    first = items[1]['main']
-    for index, weather  in enumerate(items):
-        data = weather['main']
-        print (f"Weather for day {index} is: {data}")
+    response.raise_for_status()
+    print (response.json())
+    weather_data = response.json()['list']
+
+    is_bad = False
+    for index, weather  in enumerate(weather_data):
+        weather_id = weather['weather'][0]['id']
+        if weather_id < 700: is_bad = True
+
+    if is_bad:
+         print ('Bring an Umbrella')
+    else:
+         print ('Clear weather. have a great day!')
+    # # first = items[1]['main']
+    #
+    # for index, weather  in enumerate(weather_data):
+    #     data = weather['main']
+        # print (f"Weather for day {index} is: {data}")
 
     # if response.status_code == 200:
     #     print("data is: ",response.json())

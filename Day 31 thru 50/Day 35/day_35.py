@@ -10,3 +10,7 @@
 # =======>How to use Parameter
 #New:
 # =======> API Authorization
+
+#========== Part 2
+# 1) Learnt about https://jsonviewer.stack.hu/ this URL is used to view json formated data
+# 2) learnt about https://www.ventusky.com/ URL to check global weather status
