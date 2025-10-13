@@ -14,3 +14,9 @@
 #========== Part 2
 # 1) Learnt about https://jsonviewer.stack.hu/ this URL is used to view json formated data
 # 2) learnt about https://www.ventusky.com/ URL to check global weather status
+# 3) Learnt about pythonanywhere.com
+# 4) learnt about Environment Variables:
+    #   Usecases:
+    #       - Convenience: Used to set longterm data (particularly once that needs to be updated without impacting the code)
+    #       - Security: Protects sensitive data from being placed in the code.
+    #       -
