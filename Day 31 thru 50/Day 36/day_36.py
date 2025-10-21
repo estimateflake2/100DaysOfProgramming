@@ -23,7 +23,7 @@ def get_news(company_name, api_key):
         "language": "en"
     }
     response = requests.get(url,params)
-    print (response.json())
+    return response.json()
 
 def get_stocks(symbol:str, api_key:str)->tuple:
     url = "https://www.alphavantage.co/query"f"?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}"
@@ -44,4 +44,9 @@ def get_stocks(symbol:str, api_key:str)->tuple:
 
 
 stock_p = get_stocks("TSLA",alpha_vantage_key)
-print (get_news(stock_company_name, news_api_key))
+company_news = get_news(stock_company_name, news_api_key)
+for index, value  in enumerate(company_news['articles']):
+        print ('Title: ', value['title'])
+        print('Description: ', value['description'])
+        print('Author: ', value['author'])
+#print (company_news['articles'])
