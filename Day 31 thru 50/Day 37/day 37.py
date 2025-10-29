@@ -27,8 +27,6 @@ def create_graph():
     USERNAME = 'extender'
     TOKEN = 'f7Qy8Wc1LZp0rA9mB2NxhE4TdvJkF3uVYSqR7oC6GzPMwHnKXtjD5beLUaQ0sI9y'
 
-
-
     graph_url = f"https://pixe.la/v1/users/{USERNAME}/graphs"
     param = {
         "id":'graph1',
@@ -48,22 +46,79 @@ def create_graph():
 #STEP 3: POST VALUE TO THE GRAPH
 def post_a_pixel():
     import requests
+    from datetime import datetime
+
     USERNAME = 'extender'
     TOKEN = 'f7Qy8Wc1LZp0rA9mB2NxhE4TdvJkF3uVYSqR7oC6GzPMwHnKXtjD5beLUaQ0sI9y'
     GRAPHID = 'graph1'
     add_to_graph_url = f"https://pixe.la/v1/users/{USERNAME}/graphs/{GRAPHID}"
+    today = datetime.now().strftime("%Y%m%d") #using string f time
+    print (today)
+
     param = {
-        "date":'20250127',
+        "date": today,
         "quantity":'1.0'
     }
     headers = {
         "X-USER-TOKEN": TOKEN
     }
+
     response = requests.post(url=add_to_graph_url, json=param, headers=headers)
     print(response)
     print (response.text)
-post_a_pixel()
+# post_a_pixel()
 
+#Updating and deleteing pixels using PUT and Delete
+
+#UPDATE PIXELA
+def update_pixels():
+    import requests
+    from datetime import datetime
+
+    USERNAME = 'extender'
+    TOKEN = 'f7Qy8Wc1LZp0rA9mB2NxhE4TdvJkF3uVYSqR7oC6GzPMwHnKXtjD5beLUaQ0sI9y'
+    GRAPHID = 'graph1'
+
+    today = datetime.now().strftime("%Y%m%d") #using string f time
+    today = 20250127
+    add_to_graph_url = f"https://pixe.la/v1/users/{USERNAME}/graphs/{GRAPHID}/{today}"
+    print (add_to_graph_url)
+
+    param = {
+        "quantity":'10.0'
+    }
+    headers = {
+        "X-USER-TOKEN": TOKEN
+    }
+    response = requests.put(url=add_to_graph_url, json=param, headers=headers)
+    print(response)
+    print (response.text)
+update_pixels()
+
+
+#DELETE PIXELA
+def delete_pixels():
+    import requests
+    from datetime import datetime
+
+    USERNAME = 'extender'
+    TOKEN = 'f7Qy8Wc1LZp0rA9mB2NxhE4TdvJkF3uVYSqR7oC6GzPMwHnKXtjD5beLUaQ0sI9y'
+    GRAPHID = 'graph1'
+    today = datetime.now().strftime("%Y%m%d") #using string f time
+    today = 20250127
+    add_to_graph_url = f"https://pixe.la/v1/users/{USERNAME}/graphs/{GRAPHID}/{today}"
+    print (add_to_graph_url)
+
+    param = {
+        "quantity":'10.0'
+    }
+    headers = {
+        "X-USER-TOKEN": TOKEN
+    }
+    response = requests.delete(url=add_to_graph_url, json=param, headers=headers)
+    print(response)
+    print (response.text)
+# delete_pixels()
 
 
 
